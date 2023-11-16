@@ -10,7 +10,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'build-app'
+                sh 'docker images'
             }
         }
     }
