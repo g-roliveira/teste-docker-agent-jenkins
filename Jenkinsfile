@@ -1,6 +1,8 @@
 pipeline {
     agent {
-        label 'docker-dind'
+        node {
+            label 'docker-dind'
+        }
     }
     stages {
         stage('Build') {
