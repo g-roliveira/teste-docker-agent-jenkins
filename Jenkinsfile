@@ -10,7 +10,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'docker images'
+                sh 'hello-world'
             }
         }
     }
