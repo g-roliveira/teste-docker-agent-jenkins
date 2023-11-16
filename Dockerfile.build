@@ -1,0 +1,25 @@
+# Use uma imagem base oficial do Java, por exemplo, uma versão do Java 11
+FROM openjdk:11-jdk
+
+# Define o Maven version
+ARG MAVEN_VERSION=3.6.3
+
+# Define o diretório de instalação do Maven
+ARG MAVEN_HOME=/usr/share/maven
+
+# Baixa e instala o Maven
+RUN mkdir -p $MAVEN_HOME \
+    && curl -fsSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz \
+    | tar -xzC $MAVEN_HOME --strip-components=1
+
+# Adiciona o binário do Maven ao PATH
+ENV PATH=$MAVEN_HOME/bin:$PATH
+
+# Define o diretório de trabalho
+WORKDIR /app
+
+# Copia o seu código fonte para a imagem (opcional)
+# COPY . /app
+
+# Comando padrão para executar sua aplicação
+# CMD ["mvn", "clean", "install"]
