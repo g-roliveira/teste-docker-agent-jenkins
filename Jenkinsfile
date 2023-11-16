@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        // Define o agente Docker com a label "docker-dind"
-        label 'docker-dind'
-    }
-
+    agent any
     stages {
         stage('Build') {
             agent {
