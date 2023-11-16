@@ -3,30 +3,21 @@ pipeline {
         // Define o agente Docker com a label "docker-dind"
         dockerfile {
             label 'docker-dind'
-            filename 'Dockerfile'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
 
     stages {
         stage('Build') {
-            steps {
-                // Comandos para construir seu projeto
-                sh 'docker build -t meu-projeto .'
+            agent {
+                dockerfile {
+                    filename 'Dockerfile.build'
+                    registryUrl 'https://harbor-dev.gustavo.com/docker-hub'
+                    registryCredentialsId 'harbor'
+                    reuseNode true
+                }
             }
-        }
-
-        stage('Test') {
             steps {
-                // Comandos para testar seu projeto
-                sh 'docker run meu-projeto ./run-tests.sh'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                // Comandos para implantar seu projeto
-                sh 'docker run meu-projeto ./deploy.sh'
+                sh 'build-app'
             }
         }
     }
