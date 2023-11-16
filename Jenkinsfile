@@ -9,9 +9,6 @@ pipeline {
             agent {
                 dockerfile {
                     filename 'Dockerfile.build'
-                    registryUrl 'https://harbor-dev.gustavo.com/docker-hub'
-                    registryCredentialsId 'harbor'
-                    reuseNode true
                 }
             }
             steps {
