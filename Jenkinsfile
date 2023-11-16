@@ -1,9 +1,7 @@
 pipeline {
     agent {
         // Define o agente Docker com a label "docker-dind"
-        dockerfile {
-            label 'docker-dind'
-        }
+        label 'docker-dind'
     }
 
     stages {
