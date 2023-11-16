@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'docker-dddddddd'
+        label 'docker-dind'
     }
     stages {
         stage('Build') {
